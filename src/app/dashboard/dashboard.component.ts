@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  constructor(private router: Router) {}
   userEmail: string = '';
 
   ngOnInit(): void {
@@ -22,7 +24,12 @@ export class DashboardComponent implements OnInit {
         localStorage.removeItem('accessToken');
       }
     } else {
-      console.warn('No valid token found.');
+      console.warn('No valid token found.Login first');
     }
+  }
+  logout() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    this.router.navigate(['/auth/login']);
   }
 }
