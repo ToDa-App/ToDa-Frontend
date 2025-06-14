@@ -34,7 +34,7 @@ export class LoginComponent {
       next: (res: any) => {
         const token = res.data.token;
         const refreshToken = res.data.refreshToken;
-        localStorage.setItem('accessToken', token);
+        localStorage.setItem('token', token);
         localStorage.setItem('refreshToken', refreshToken);
 
         this.router.navigate(['/dashboard']);

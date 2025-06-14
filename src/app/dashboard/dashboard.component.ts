@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
-import { Router } from '@angular/router';
+import { TaskService } from '../core/services/task.service';
+import { TaskSummary } from '../core/services/task.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,28 +8,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private router: Router) {}
-  userEmail: string = '';
+  tasks: TaskSummary[] = [];
+  statusFilter: string = '';
+  priorityFilter: string = '';
+  currentPage = 0;
+
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
-    const token = localStorage.getItem('accessToken');
+    this.loadTasks();
+  }
 
-    if (token && token.split('.').length === 3) {
-      try {
-        const decoded: any = jwtDecode(token);
-        this.userEmail = decoded.sub || decoded.email;
-        console.log('Decoded Token:', decoded);
-      } catch (err) {
-        console.error('Invalid token', err);
-        localStorage.removeItem('accessToken');
-      }
-    } else {
-      console.warn('No valid token found.Login first');
-    }
+  loadTasks(): void {
+    this.taskService.getActiveTasks(this.currentPage, this.statusFilter, this.priorityFilter)
+      .subscribe({
+        next: (res: any) => {
+          this.tasks = res.data?.content ?? [];
+        },
+        error: err => {
+          console.error('Failed to fetch tasks:', err);
+        }
+      });
+
   }
-  logout() {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    this.router.navigate(['/auth/login']);
+
+  onFilterChange(): void {
+    this.currentPage = 0;
+    this.loadTasks();
   }
+  onViewTaskDetails(task: TaskSummary): void {
+    console.log('Task details:', task);
+  }
+
+  onAddTask(): void {
+    console.log('Add task clicked');
+  }
+
+  onEditTask(task: TaskSummary): void {
+    console.log('Edit clicked for task:', task);
+  }
+
+  onDeleteTask(task: TaskSummary): void {
+    console.log('Delete clicked for task:', task);
+  }
+
+  goToDeletedTasks(): void {
+    console.log('Navigate to deleted tasks');
+  }
+
 }
