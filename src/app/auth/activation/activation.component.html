@@ -1,0 +1,23 @@
+<div class="auth-container">
+  <form [formGroup]="activationForm" (ngSubmit)="activateAccount()" class="auth-box">
+    <h2>Activate Your Account</h2>
+
+    <label>Email</label>
+    <input formControlName="email" type="email" />
+
+    <label>OTP Code</label>
+    <input formControlName="otp" type="text" placeholder="Enter the OTP sent to your email" />
+
+    <button type="submit" class="btn-submit" [disabled]="activationForm.invalid || loading">
+      {{ loading ? 'Activating...' : 'Activate' }}
+    </button>
+
+    <button type="button" class="btn-secondary" (click)="resendOtp()" [disabled]="resending || currentCooldown > 0">
+  {{ resending ? 'Resending...' : currentCooldown > 0 ? 'Wait ' + currentCooldown + 's' : 'Resend OTP' }}</button>
+
+
+
+    <div *ngIf="successMessage" class="success-msg">{{ successMessage }}</div>
+    <div *ngFor="let error of errorMessages" class="error">{{ error }}</div>
+  </form>
+</div>

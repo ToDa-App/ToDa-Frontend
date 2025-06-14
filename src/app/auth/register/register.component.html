@@ -1,0 +1,36 @@
+<div class="auth-container">
+  <form [formGroup]="registerForm" (ngSubmit)="submit()" class="auth-box">
+    <h2>Create an Account</h2>
+
+    <label>Email</label>
+    <input formControlName="email" type="email" placeholder="Enter your email" />
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
+      Valid email is required.
+    </div>
+
+    <label>Password</label>
+    <input formControlName="password" type="password" placeholder="Enter password" />
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
+      Password must be at least 8 characters.
+    </div>
+
+    <label>Confirm Password</label>
+    <input formControlName="confirmPassword" type="password" placeholder="Confirm password" />
+    <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="error">
+      Passwords must match.
+    </div>
+
+    <button type="submit" class="btn-submit" [disabled]="registerForm.invalid">Register</button>
+
+    <p class="switch-link">
+      Already have an account?
+      <a routerLink="/auth/login">Login</a>
+    </p>
+<div *ngIf="errorMessages.length > 0" class="error-list">
+  <ul>
+    <li *ngFor="let error of errorMessages">{{ error }}</li>
+  </ul>
+</div>
+
+  </form>
+</div>
