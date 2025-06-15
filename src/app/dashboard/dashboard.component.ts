@@ -46,9 +46,9 @@ export class DashboardComponent implements OnInit {
     console.log('Add task clicked');
   }
 
-  editTask(id: number): void {
-    sessionStorage.setItem('editTaskId', id.toString());
-    this.router.navigate(['/edit-task']);
+  editTask(task: any): void {
+    sessionStorage.setItem('taskId', task.id.toString());
+    this.router.navigate(['/task-edit']);
   }
 
   deleteTask(id: number): void {

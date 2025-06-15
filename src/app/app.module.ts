@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FormsModule } from '@angular/forms';
 import { TaskDetailsComponent } from './task-details/task-details.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
     AppComponent,
     HomeComponent,
     DashboardComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

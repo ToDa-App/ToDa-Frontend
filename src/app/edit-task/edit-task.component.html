@@ -1,0 +1,36 @@
+<h2>Edit Task</h2>
+<form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="onSave()">
+  <label>Title:
+    <input formControlName="title" />
+  </label>
+
+  <label>Description:
+    <textarea formControlName="description"></textarea>
+  </label>
+
+  <label>Priority:
+    <select formControlName="priority">
+      <option value="LOW">Low</option>
+      <option value="MEDIUM">Medium</option>
+      <option value="HIGH">High</option>
+    </select>
+  </label>
+
+  <label>Status:
+    <select formControlName="status">
+      <option value="PENDING">Pending</option>
+      <option value="OVERDUE">Overdue</option>
+      <option value="COMPLETED">Completed</option>
+    </select>
+  </label>
+
+  <label>Start Date:
+    <input type="date" formControlName="startDate" />
+  </label>
+
+  <label>Due Date:
+    <input type="date" formControlName="dueDate" />
+  </label>
+
+  <button type="submit" [disabled]="editForm.invalid">Save</button>
+</form>
