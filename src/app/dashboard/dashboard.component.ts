@@ -46,16 +46,19 @@ export class DashboardComponent implements OnInit {
     console.log('Add task clicked');
   }
 
-  onEditTask(task: TaskSummary): void {
-    console.log('Edit clicked for task:', task);
+  editTask(id: number): void {
+    sessionStorage.setItem('editTaskId', id.toString());
+    this.router.navigate(['/edit-task']);
   }
 
-  onDeleteTask(task: TaskSummary): void {
-    console.log('Delete clicked for task:', task);
+  deleteTask(id: number): void {
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.taskService.deleteTask(id).subscribe({
+        next: () => {
+          this.loadTasks();
+        },
+        error: (err) => console.error('Failed to delete task', err)
+      });
+    }
   }
-
-  goToDeletedTasks(): void {
-    console.log('Navigate to deleted tasks');
-  }
-
 }

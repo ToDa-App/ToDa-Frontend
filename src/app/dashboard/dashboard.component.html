@@ -23,7 +23,6 @@
         </label>
 
         <button class="btn add" (click)="onAddTask()">+ Add Task</button>
-        <button class="btn deleted" (click)="goToDeletedTasks()">🗑️ View Deleted Tasks</button>
     </div>
 
     <div *ngIf="tasks.length === 0" class="no-tasks">No tasks found.</div>
@@ -44,8 +43,8 @@
                 <td>{{ task.priority }}</td>
                 <td>
                     <button class="btn details" (click)="viewTask(task)">👁️ View</button>
-                    <button class="btn edit" (click)="onEditTask(task)">✏️ Edit</button>
-                    <button class="btn delete" (click)="onDeleteTask(task)">🗑️ Delete</button>
+                    <button class="btn edit" (click)="editTask(task.id)">✏️ Edit</button>
+                    <button class="btn delete" (click)="deleteTask(task.id)">🗑️ Delete</button>
                 </td>
             </tr>
         </tbody>

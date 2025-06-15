@@ -36,8 +36,12 @@ export class TaskService {
   }
 
   getTaskById(id: number): Observable<any> {
-  return this.http.get(`${this.BASE_URL}/${id}`);
-}
+    return this.http.get(`${this.BASE_URL}/${id}`);
+  }
+  deleteTask(id: number): Observable<any> {
+    return this.http.delete(`${this.BASE_URL}/${id}`);
+  }
+
 
 
 

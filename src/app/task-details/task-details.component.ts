@@ -20,7 +20,7 @@ export class TaskDetailsComponent implements OnInit {
     let taskId = nav?.extras?.state?.['taskId'];
 
     if (!taskId) {
-      taskId = sessionStorage.getItem('taskId'); 
+      taskId = sessionStorage.getItem('taskId');
       console.warn('Using fallback taskId from sessionStorage');
     }
     if (taskId) {
@@ -30,6 +30,18 @@ export class TaskDetailsComponent implements OnInit {
       });
     } else {
       console.error('No task ID provided');
+    }
+  }
+  editTask(): void {
+    sessionStorage.setItem('editTaskId', this.task.id.toString());
+    this.router.navigate(['/edit-task']);
+  }
+  deleteTask(): void {
+    if (confirm('Are you sure you want to delete this task?')) {
+      this.taskService.deleteTask(this.task.id).subscribe({
+        next: () => this.router.navigate(['/dashboard']),
+        error: (err) => console.error('Failed to delete task', err)
+      });
     }
   }
 }
