@@ -23,3 +23,19 @@
 .task-details-container strong {
   color: #444;
 }
+.btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  &.edit {
+    background-color: #2196f3;
+    color: white;
+    margin-right: 6px;
+  }
+  &.delete {
+    background-color: #f44336;
+    color: white;
+  }
+}

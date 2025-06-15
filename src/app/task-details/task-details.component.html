@@ -6,8 +6,8 @@
   <p><strong>Start Date:</strong> {{ task.startDate }}</p>
   <p><strong>Due Date:</strong> {{ task.dueDate }}</p>
   <p><strong>Completion Date:</strong> {{ task.completionDate }}</p>
-  <button (click)="editTask()">✏️ Edit</button>
-  <button (click)="deleteTask()">🗑️ Delete</button>
+  <button class="btn edit" (click)="editTask(task)">✏️ Edit</button>
+  <button class="btn delete" (click)="deleteTask(task.id)">🗑️ Delete</button>
 </div>
 <ng-template #loading>
   <p>Loading task details...</p>
