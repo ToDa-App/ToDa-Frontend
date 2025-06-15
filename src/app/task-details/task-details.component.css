@@ -1,0 +1,25 @@
+.task-details-container {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background-color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.task-details-container h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  color: #333;
+}
+
+.task-details-container p {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.task-details-container strong {
+  color: #444;
+}

@@ -43,7 +43,7 @@
                 <td>{{ task.status }}</td>
                 <td>{{ task.priority }}</td>
                 <td>
-                    <button class="btn details" (click)="onViewTaskDetails(task)">👁️ View</button>
+                    <button class="btn details" (click)="viewTask(task)">👁️ View</button>
                     <button class="btn edit" (click)="onEditTask(task)">✏️ Edit</button>
                     <button class="btn delete" (click)="onDeleteTask(task)">🗑️ Delete</button>
                 </td>

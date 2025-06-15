@@ -1,0 +1,15 @@
+<div class="task-details-container" *ngIf="task; else loading">
+  <h2>{{ task.title }}</h2>
+  <p><strong>Description:</strong> {{ task.description }}</p>
+  <p><strong>Status:</strong> {{ task.status }}</p>
+  <p><strong>Priority:</strong> {{ task.priority }}</p>
+  <p><strong>Start Date:</strong> {{ task.startDate }}</p>
+  <p><strong>Due Date:</strong> {{ task.dueDate }}</p>
+  <p><strong>Completion Date:</strong> {{ task.completionDate }}</p>
+  <p *ngIf="task.completionDate"><strong>Completed At:</strong> {{ task.completionDate }}</p>
+</div>
+<ng-template #loading>
+  <p>Loading task details...</p>
+</ng-template>
+
+

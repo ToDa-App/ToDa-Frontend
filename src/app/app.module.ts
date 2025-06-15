@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FormsModule } from '@angular/forms';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,

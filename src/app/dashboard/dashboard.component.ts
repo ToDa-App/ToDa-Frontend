@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../core/services/task.service';
 import { TaskSummary } from '../core/services/task.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   priorityFilter: string = '';
   currentPage = 0;
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private router: Router) { }
 
   ngOnInit(): void {
     this.loadTasks();
@@ -36,8 +37,9 @@ export class DashboardComponent implements OnInit {
     this.currentPage = 0;
     this.loadTasks();
   }
-  onViewTaskDetails(task: TaskSummary): void {
-    console.log('Task details:', task);
+  viewTask(task: TaskSummary): void {
+    sessionStorage.setItem('taskId', task.id.toString());
+    this.router.navigate(['/task-details']);
   }
 
   onAddTask(): void {

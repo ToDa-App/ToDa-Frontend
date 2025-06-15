@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 
 export interface TaskSummary {
+  id: number;
   title: string;
   priority: 'LOW' | 'MEDIUM' | 'HIGH';
   status: 'PENDING' | 'COMPLETED' | 'OVERDUE';
@@ -22,17 +23,22 @@ export interface PagedResponse<T> {
   providedIn: 'root'
 })
 export class TaskService {
-  private readonly BASE_URL = 'http://localhost:8082/api/tasks'; 
+  private readonly BASE_URL = 'http://localhost:8082/api/tasks';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getActiveTasks(page: number, status?: string, priority?: string): Observable<any> {
-  let params = new HttpParams().set('page', page.toString());
-  if (status) params = params.set('status', status);
-  if (priority) params = params.set('priority', priority);
+    let params = new HttpParams().set('page', page.toString());
+    if (status) params = params.set('status', status);
+    if (priority) params = params.set('priority', priority);
 
-  return this.http.get(`${this.BASE_URL}/active`, { params });
+    return this.http.get(`${this.BASE_URL}/active`, { params });
+  }
+
+  getTaskById(id: number): Observable<any> {
+  return this.http.get(`${this.BASE_URL}/${id}`);
 }
+
 
 
 }
