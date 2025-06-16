@@ -1,5 +1,5 @@
-<h2>Edit Task</h2>
 <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="onSave()">
+  <h2>Edit Task</h2>
   <label>Title:
     <input formControlName="title" />
   </label>
