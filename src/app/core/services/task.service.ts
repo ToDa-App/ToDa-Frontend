@@ -47,9 +47,11 @@ export class TaskService {
   createTask(taskData: any): Observable<any> {
     return this.http.post(`${this.BASE_URL}`, taskData);
   }
-
-
-
-
+  getDeletedTasks(page: number = 0): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/deleted?page=${page}`);
+  }
+  restoreTask(taskId: number): Observable<any> {
+    return this.http.put(`${this.BASE_URL}/restore/${taskId}`, {});
+  }
 
 }

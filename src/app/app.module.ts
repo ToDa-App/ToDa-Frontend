@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { DeletedTasksComponent } from './deleted-tasks/deleted-tasks.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AddTaskComponent } from './add-task/add-task.component';
     DashboardComponent,
     TaskDetailsComponent,
     EditTaskComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    DeletedTasksComponent
   ],
   imports: [
     BrowserModule,

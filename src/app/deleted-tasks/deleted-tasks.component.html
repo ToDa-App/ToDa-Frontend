@@ -1,0 +1,32 @@
+<h2>🗑️ Deleted Tasks</h2>
+
+<div *ngIf="deletedTasks.length === 0" class="no-tasks">
+  No deleted tasks found.
+</div>
+
+<table class="task-table" *ngIf="deletedTasks.length > 0">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of deletedTasks">
+      <td>{{ task.title }}</td>
+      <td>{{ task.priority }}</td>
+      <td>{{ task.status }}</td>
+      <td>
+        <button class="btn restore" (click)="restore(task.id)">🔁 Restore</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pagination" *ngIf="totalPages > 1">
+  <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+  <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages">Next</button>
+</div>

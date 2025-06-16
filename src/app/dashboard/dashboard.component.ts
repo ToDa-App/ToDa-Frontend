@@ -45,6 +45,9 @@ export class DashboardComponent implements OnInit {
   onAddTask(): void {
     this.router.navigate(['/add-task']);
   }
+  showDeletedTasks(): void {
+    this.router.navigate(['/deleted-tasks']);
+  }
 
   editTask(task: any): void {
     sessionStorage.setItem('taskId', task.id.toString());
