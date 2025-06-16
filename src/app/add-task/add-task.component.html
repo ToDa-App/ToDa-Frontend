@@ -1,0 +1,43 @@
+<h2>Create New Task</h2>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <label>Title:
+    <input formControlName="title" placeholder="Enter task title" />
+    <div *ngIf="taskForm.get('title')?.touched && taskForm.get('title')?.invalid" class="error">
+      Title is required.
+    </div>
+  </label>
+
+  <label>Description:
+    <textarea formControlName="description" placeholder="Enter description (optional)"></textarea>
+  </label>
+
+  <label>Priority:
+    <select formControlName="priority">
+      <option value="LOW">Low</option>
+      <option value="MEDIUM">Medium</option>
+      <option value="HIGH">High</option>
+    </select>
+  </label>
+
+  <label>Status:
+    <select formControlName="status">
+      <option value="PENDING">Pending</option>
+      <option value="OVERDUE">Overdue</option>
+      <option value="COMPLETED">Completed</option>
+    </select>
+  </label>
+
+  <label>Start Date:
+    <input type="date" formControlName="startDate" />
+  </label>
+
+  <label>Due Date:
+    <input type="date" formControlName="dueDate" />
+  </label>
+
+  <label>Completion Date:
+    <input type="date" formControlName="completionDate" />
+  </label>
+
+  <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
+</form>

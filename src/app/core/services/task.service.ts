@@ -42,8 +42,12 @@ export class TaskService {
     return this.http.delete(`${this.BASE_URL}/${id}`);
   }
   updateTask(id: number, data: any): Observable<any> {
-  return this.http.put(`${this.BASE_URL}/${id}`, data);
-}
+    return this.http.put(`${this.BASE_URL}/${id}`, data);
+  }
+  createTask(taskData: any): Observable<any> {
+    return this.http.post(`${this.BASE_URL}`, taskData);
+  }
+
 
 
 

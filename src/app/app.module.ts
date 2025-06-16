@@ -11,6 +11,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FormsModule } from '@angular/forms';
 import { TaskDetailsComponent } from './task-details/task-details.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
     HomeComponent,
     DashboardComponent,
     TaskDetailsComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,

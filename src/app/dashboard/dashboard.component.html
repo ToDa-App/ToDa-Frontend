@@ -43,7 +43,7 @@
                 <td>{{ task.priority }}</td>
                 <td>
                     <button class="btn details" (click)="viewTask(task)">👁️ View</button>
-                    <button class="btn edit" (click)="editTask(task)">✏️ Edit</button>
+                    <button class="btn edit" (click)="editTask(task.id)">✏️ Edit</button>
                     <button class="btn delete" (click)="deleteTask(task.id)">🗑️ Delete</button>
                 </td>
             </tr>

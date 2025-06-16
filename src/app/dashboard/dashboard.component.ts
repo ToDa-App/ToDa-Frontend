@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onAddTask(): void {
-    console.log('Add task clicked');
+    this.router.navigate(['/add-task']);
   }
 
   editTask(task: any): void {
