@@ -64,4 +64,35 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
+  logout(): void {
+    const token = localStorage.getItem('token');
+    if (!token) return;
+    this.taskService.logout(token).subscribe({
+      next: () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        this.router.navigate(['/auth/login']);
+      },
+      error: (err) => {
+        console.error('Logout failed', err);
+      }
+    });
+  }
+  deleteAccount(): void {
+    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+      this.taskService.deleteUserAccount().subscribe({
+        next: () => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('refreshToken');
+          this.router.navigate(['/auth/register']);
+        },
+        error: (err) => {
+          console.error('Account deletion failed', err);
+        }
+      });
+    }
+  }
+  goToProfile(): void {
+    this.router.navigate(['/profile']);
+  }
 }

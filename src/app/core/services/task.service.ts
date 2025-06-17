@@ -53,5 +53,19 @@ export class TaskService {
   restoreTask(taskId: number): Observable<any> {
     return this.http.put(`${this.BASE_URL}/restore/${taskId}`, {});
   }
+  logout(token: string): Observable<any> {
+    return this.http.post(
+      'http://localhost:8081/api/user/logout',
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
+  deleteUserAccount(): Observable<any> {
+    return this.http.delete('http://localhost:8081/api/user');
+  }
 
 }
