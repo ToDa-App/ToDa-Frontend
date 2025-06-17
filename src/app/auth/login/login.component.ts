@@ -33,9 +33,15 @@ export class LoginComponent {
     this.http.post(`${environment.apiBaseUrl}/auth/login`, this.loginForm.value).subscribe({
       next: (res: any) => {
         this.loading = false;
-        localStorage.setItem('accessToken', res.data.accessToken);
-        localStorage.setItem('refreshToken', res.data.refreshToken);
-        this.router.navigate(['/dashboard']);
+        const token = res.data.token;
+        const refreshToken = res.data.refreshToken;
+        if (token && refreshToken) {
+          localStorage.setItem('token', token);
+          localStorage.setItem('refreshToken', refreshToken);
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 100);
+        } else { this.errorMessages.push('Login failed: Missing tokens.'); }
       },
       error: (err) => {
         this.loading = false;
