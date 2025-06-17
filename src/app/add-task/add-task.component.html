@@ -1,5 +1,5 @@
-<h2>Create New Task</h2>
 <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <h2 style="text-align: center; margin-bottom: 1rem;">Create New Task</h2>
   <label>Title:
     <input formControlName="title" placeholder="Enter task title" />
     <div *ngIf="taskForm.get('title')?.touched && taskForm.get('title')?.invalid" class="error">

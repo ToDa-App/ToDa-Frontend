@@ -1,36 +1,57 @@
 <div class="auth-container">
-  <form [formGroup]="registerForm" (ngSubmit)="submit()" class="auth-box">
+  <form [formGroup]="registerForm" (ngSubmit)="submit()" class="auth-box" novalidate>
     <h2>Create an Account</h2>
+
+    <div *ngIf="errorMessages.length > 0" class="error-list">
+      <ul>
+        <li *ngFor="let error of errorMessages">{{ error }}</li>
+      </ul>
+    </div>
 
     <label>Email</label>
     <input formControlName="email" type="email" placeholder="Enter your email" />
-    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error">
-      Valid email is required.
+    <div *ngIf="email?.invalid && (email?.touched || email?.dirty)" class="error">
+      <div *ngIf="email?.errors?.['required']">Email is required.</div>
+      <div *ngIf="email?.errors?.['email']">Invalid email format.</div>
     </div>
 
     <label>Password</label>
-    <input formControlName="password" type="password" placeholder="Enter password" />
-    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error">
-      Password must be at least 8 characters.
+    <div class="password-field">
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="Enter password"
+        (input)="registerForm.get('password')?.updateValueAndValidity()" />
+      <button type="button" class="toggle-btn" (click)="togglePasswordVisibility()">
+        <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+      </button>
+    </div>
+    <div *ngIf="password?.dirty || password?.touched" class="error password-error">
+      <div *ngIf="password?.errors?.['required']">Password is required.</div>
+      <div *ngIf="isPasswordWeak()" class="error password-error">
+        Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 digit, 1 special character, and be at
+        least 8 characters.
+      </div>
+
     </div>
 
     <label>Confirm Password</label>
-    <input formControlName="confirmPassword" type="password" placeholder="Confirm password" />
-    <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="error">
-      Passwords must match.
+    <div class="password-field">
+      <input [type]="showPassword ? 'text' : 'password'" formControlName="confirmPassword"
+        placeholder="Confirm password" />
+      <button type="button" class="toggle-btn" (click)="togglePasswordVisibility()">
+        <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+      </button>
+    </div>
+    <div *ngIf="confirmPassword?.touched && registerForm.errors?.['passwordMismatch']" class="error password-error">
+      Passwords do not match.
     </div>
 
-    <button type="submit" class="btn-submit" [disabled]="registerForm.invalid">Register</button>
+
+    <button type="submit" class="btn-submit" [disabled]="registerForm.invalid || loading">
+      {{ loading ? 'Registering...' : 'Register' }}
+    </button>
 
     <p class="switch-link">
       Already have an account?
       <a routerLink="/auth/login">Login</a>
     </p>
-<div *ngIf="errorMessages.length > 0" class="error-list">
-  <ul>
-    <li *ngFor="let error of errorMessages">{{ error }}</li>
-  </ul>
-</div>
-
   </form>
 </div>
