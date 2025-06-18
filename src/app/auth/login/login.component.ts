@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', token);
           localStorage.setItem('refreshToken', refreshToken);
           setTimeout(() => {
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/dashboard'], { replaceUrl: true });
           }, 100);
         } else { this.errorMessages.push('Login failed: Missing tokens.'); }
       },
