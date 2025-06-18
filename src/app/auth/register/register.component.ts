@@ -3,13 +3,13 @@ import { FormBuilder, Validators, AbstractControl, ValidationErrors } from '@ang
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-
+import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   loading = false;
   errorMessages: string[] = [];
   fieldErrors: { [key: string]: string } = {};
@@ -30,6 +30,12 @@ export class RegisterComponent {
     ]],
     confirmPassword: ['', [Validators.required]]
   }, { validators: this.passwordMatchValidator });
+  ngOnInit(): void {
+    this.registerForm.valueChanges.subscribe(() => {
+      this.errorMessages = [];
+      this.fieldErrors = {};
+    });
+  }
 
   passwordMatchValidator(group: AbstractControl): ValidationErrors | null {
     const password = group.get('password')?.value;

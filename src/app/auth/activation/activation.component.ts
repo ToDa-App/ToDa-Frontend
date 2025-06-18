@@ -3,8 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
-
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-activation',
   templateUrl: './activation.component.html',
@@ -35,9 +34,10 @@ startResendCooldown() {
   }, 1000);
 }
   constructor(private fb: FormBuilder, private http: HttpClient,
-  private route: ActivatedRoute) {}
+  private route: ActivatedRoute,private router: Router) {}
 
   ngOnInit(): void {
+    this.errorMessages = [];
   this.route.queryParams.subscribe(params => {
     const email = params['email'];
     if (email) {
@@ -63,6 +63,9 @@ startResendCooldown() {
       next: () => {
         this.successMessage = 'Account activated successfully!';
         this.loading = false;
+        setTimeout(() => {
+        this.router.navigate(['/auth/login']);
+      }, 3000); 
       },
       error: (err) => {
         this.loading = false;
@@ -97,7 +100,7 @@ startResendCooldown() {
         this.errorMessages = [err.error.message];
 
         if (err.error.message === 'Account is already activated') {
-          this.successMessage = 'Account already activated. You can now log in.';
+          this.successMessage = 'You can now log in.';
         }
       } else {
         this.errorMessages = ['Failed to resend OTP. Try again.'];

@@ -3,12 +3,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
+import { OnInit } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loading = false;
   errorMessages: string[] = [];
   fieldErrors: { [key: string]: string } = {};
@@ -24,6 +25,12 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
+  ngOnInit(): void {
+    this.loginForm.valueChanges.subscribe(() => {
+      this.errorMessages = [];
+      this.fieldErrors = {};
+    });
+  }
 
   submit(): void {
     if (this.loginForm.invalid) return;

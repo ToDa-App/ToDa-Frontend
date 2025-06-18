@@ -47,4 +47,8 @@ export class ForgetPasswordComponent {
       }
     });
   }
+  get email() {
+  return this.forgetForm.get('email');
+}
+
 }
