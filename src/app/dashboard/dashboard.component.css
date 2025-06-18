@@ -7,6 +7,68 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.dashboard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-info img {
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.profile-info h2 {
+  margin: 0;
+  font-size: 20px;
+  padding-left: 8px;
+}
+
+.dashboard-header {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1976d2;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #1565c0;
+    }
+
+    &.logout {
+      background-color: #e53935;
+
+      &:hover {
+        background-color: #c62828;
+      }
+    }
+
+    &.delete-account {
+      background-color: #9c27b0;
+
+      &:hover {
+        background-color: #7b1fa2;
+      }
+    }
+  }
+}
+
+
 h2 {
   text-align: center;
   margin-bottom: 24px;

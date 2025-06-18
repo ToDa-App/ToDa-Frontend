@@ -7,7 +7,7 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { DeletedTasksComponent } from './deleted-tasks/deleted-tasks.component';
-
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard] },
@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'task-edit', component: EditTaskComponent },
   { path: 'add-task', component: AddTaskComponent },
   { path: 'deleted-tasks', component: DeletedTasksComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)

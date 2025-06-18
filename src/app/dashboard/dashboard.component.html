@@ -1,9 +1,14 @@
 <div class="dashboard-container">
-    <h2>Welcome to Your Dashboard</h2>
-    <div class="dashboard-header">
-        <button (click)="goToProfile()">Profile</button>
-        <button (click)="logout()">Logout</button>
-        <button (click)="deleteAccount()">Delete Account</button>
+    <div class="dashboard-top" *ngIf="userProfile">
+        <div class="profile-info">
+            <img [src]="imageUrl" alt="Profile" width="70" height="90" />
+            <h2>Welcome {{ userProfile.nickname }} to Your Dashboard</h2>
+        </div>
+        <div class="dashboard-header">
+            <button (click)="goToProfile()">👤 Profile</button>
+            <button class="logout" (click)="logout()">🚪 Logout</button>
+            <button class="delete-account" (click)="deleteAccount()">❌ Delete Account</button>
+        </div>
     </div>
 
     <div class="filters">

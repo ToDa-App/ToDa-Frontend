@@ -13,6 +13,7 @@ import { TaskDetailsComponent } from './task-details/task-details.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { DeletedTasksComponent } from './deleted-tasks/deleted-tasks.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DeletedTasksComponent } from './deleted-tasks/deleted-tasks.component';
     TaskDetailsComponent,
     EditTaskComponent,
     AddTaskComponent,
-    DeletedTasksComponent
+    DeletedTasksComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

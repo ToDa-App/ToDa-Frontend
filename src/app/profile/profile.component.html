@@ -1,0 +1,19 @@
+<div class="profile-container">
+    <h2>Update Your Profile</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+        <label>Nickname</label>
+        <input type="text" formControlName="nickname" />
+        <label>Profile Picture</label>
+        <input type="file" (change)="onFileSelected($event)" />
+        <div *ngIf="imagePreviewUrl">
+            <img *ngIf="imagePreviewUrl" [src]="imagePreviewUrl" alt="Profile Picture" />
+        </div>
+        <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+        <ul *ngIf="errorMessages.length" class="error-messages">
+            <li *ngFor="let err of errorMessages">{{ err }}</li>
+        </ul>
+        <button type="submit" [disabled]="loading">
+            {{ loading ? 'Updating...' : 'Update Profile' }}
+        </button>
+    </form>
+</div>

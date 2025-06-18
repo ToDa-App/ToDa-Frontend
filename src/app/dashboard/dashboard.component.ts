@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../core/services/task.service';
 import { TaskSummary } from '../core/services/task.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,11 +15,19 @@ export class DashboardComponent implements OnInit {
   statusFilter: string = '';
   priorityFilter: string = '';
   currentPage = 0;
+  userProfile: any;
+  imageUrl: string = '';
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, private router: Router, private http: HttpClient,) { }
 
   ngOnInit(): void {
     this.loadTasks();
+    this.http.get<any>(`${environment.apiBaseUrl}/user/profile`).subscribe({
+      next: (res) => {
+        this.userProfile = res.data;
+        this.imageUrl = "http://localhost:8081" + res.data.profileImageUrl;
+      }
+    });
   }
 
   loadTasks(): void {

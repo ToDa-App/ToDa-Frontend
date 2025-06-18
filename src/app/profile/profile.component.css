@@ -1,0 +1,51 @@
+.profile-container {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+    }
+    .profile-img {
+        margin-top: 15px;
+        width: 150px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
+    .success-message {
+        margin-top: 15px;
+        color: green;
+    }
+    .error-messages {
+        margin-top: 10px;
+        color: red;
+        padding-left: 20px;
+    }
+    button {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #1976d2;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #1565c0;
+        }
+    }
+}
