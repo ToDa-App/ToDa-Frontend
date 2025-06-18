@@ -12,9 +12,9 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
-    const isTaskRequest = req.url.includes('/api/tasks');
+    const isProtectedRequest = req.url.includes('/api/tasks') || req.url.includes('/api/user');
     console.log('Token:', token);
-    if (token && isTaskRequest) {
+    if (token && isProtectedRequest) {
       const cloned = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
